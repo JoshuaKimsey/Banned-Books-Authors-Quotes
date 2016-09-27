@@ -25,16 +25,21 @@ public class BannedBooksAuthorsQuotes {
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to Banned Books Author Quotes!\nCreated in honor of Banned Books Week!");
-		System.out.print("How would you like to view the quotes, Randomly or By Author?\n[1] Randomly, [2] By Author: ");
 
-		String rawInput = $userInput.nextLine();
-		userSelection = Integer.parseInt(rawInput);
+		while(userSelection != 3){
+			System.out.print("How would you like to view the quotes, Randomly or By Author?\n[1] Randomly, [2] By Author, [3] Exit The Program: ");
 
-		if (userSelection == 1) {
-			randomAuthor();
-		} else if (userSelection == 2) {
-			System.out.println("\n" + selectAuthor());
+			String rawInput = $userInput.nextLine();
+			userSelection = Integer.parseInt(rawInput);
+
+			if (userSelection == 1) {
+				randomAuthor();
+			} else if (userSelection == 2) {
+				System.out.println("\n" + selectAuthor() + "\n\n\n");
+			}
 		}
+
+		System.out.println("\nThank you for expanding your knowledge!\nGood-bye!");
 	}
 
 	public static void randomAuthor() {
@@ -85,8 +90,7 @@ public class BannedBooksAuthorsQuotes {
 			authorName = "Error!";
 		}
 
-		System.out.println("\n" + authorQuote + " --" + authorName);
-
+		System.out.println("\n" + authorQuote + " --" + authorName + "\n\n\n");
 
 	}
 
@@ -126,7 +130,6 @@ public class BannedBooksAuthorsQuotes {
 		} else {
 			authorQuote = "Error! Please type a name from above!";
 		}
-
 
 		return authorQuote;
 	}
