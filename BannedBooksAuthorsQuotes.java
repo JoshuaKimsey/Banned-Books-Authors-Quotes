@@ -35,14 +35,14 @@ public class BannedBooksAuthorsQuotes {
 			if (userSelection == 1) {
 				randomAuthor();
 			} else if (userSelection == 2) {
-				System.out.println("\n" + selectAuthor() + "\n\n\n");
+				selectAuthor();
 			}
 		}
 
 		System.out.println("\nThank you for expanding your knowledge!\nGood-bye!");
 	}
 
-	public static void randomAuthor() {
+	private static void randomAuthor() {
 		String authorQuote;
 
 		String authorName = null;
@@ -94,7 +94,7 @@ public class BannedBooksAuthorsQuotes {
 
 	}
 
-	public static String selectAuthor() {
+	private static void selectAuthor() {
 		String authorChoice;
 		String authorQuote = null;
 
@@ -131,6 +131,6 @@ public class BannedBooksAuthorsQuotes {
 			authorQuote = "Error! Please type a name from above!";
 		}
 
-		return authorQuote;
+		System.out.println("\n" + authorQuote + "\n\n\n");
 	}
 }
