@@ -1,9 +1,10 @@
 import java.util.Scanner;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class BannedBooksAuthorsQuotes {
 
-	static int userSelection;
+	static int userSelection, graphicsOption = 1;
 
 	static Scanner $userInput = new Scanner(System.in);
 
@@ -24,22 +25,42 @@ public class BannedBooksAuthorsQuotes {
 
 	public static void main(String[] args) {
 
-		System.out.println("Welcome to Banned Books Author Quotes!\nCreated in honor of Banned Books Week!");
-
+		String rawInput = JOptionPane.showInputDialog("Would you like to use the graphical version of this program or the console?\n[1]Graphical, [2]Console:");
+		graphicsOption = Integer.parseInt(rawInput);
 		while(userSelection != 3){
-			System.out.print("How would you like to view the quotes, Randomly or By Author?\n[1] Randomly, [2] By Author, [3] Exit The Program: ");
 
-			String rawInput = $userInput.nextLine();
-			userSelection = Integer.parseInt(rawInput);
-
-			if (userSelection == 1) {
-				randomAuthor();
-			} else if (userSelection == 2) {
-				selectAuthor();
+			if (graphicsOption == 1) {
+				JOptionPane.showMessageDialog(null, "Welcome to Banned Books Author Quotes!\nCreated in honor of Banned Books Week!");
+			} else {
+				System.out.println("Welcome to Banned Books Author Quotes!\nCreated in honor of Banned Books Week!");
 			}
-		}
 
-		System.out.println("\nThank you for expanding your knowledge!\nGood-bye!");
+			while(userSelection != 3){
+				if (graphicsOption == 1) {
+					rawInput = JOptionPane.showInputDialog("How would you like to view the quotes, Randomly or By Author?\n[1] Randomly, [2] By Author, [3] Exit The Program: ");
+					userSelection = Integer.parseInt(rawInput);
+				} else {
+					System.out.print("How would you like to view the quotes, Randomly or By Author?\n[1] Randomly, [2] By Author, [3] Exit The Program: ");
+
+					rawInput = $userInput.nextLine();
+					userSelection = Integer.parseInt(rawInput);
+				}
+
+				if (userSelection == 1) {
+					randomAuthor();
+				} else if (userSelection == 2) {
+					selectAuthor();
+				}
+			}
+
+			if (graphicsOption == 1) {
+				JOptionPane.showMessageDialog(null, "Thank you for expanding your knowledge!\nGood-bye!");
+			} else {
+				System.out.println("\nThank you for expanding your knowledge!\nGood-bye!");
+			}
+
+			System.exit(0);
+		}
 	}
 
 	private static void randomAuthor() {
@@ -90,18 +111,24 @@ public class BannedBooksAuthorsQuotes {
 			authorName = "Error!";
 		}
 
-		System.out.println("\n" + authorQuote + " --" + authorName + "\n\n\n");
-
+		if (graphicsOption == 1) {
+			JOptionPane.showMessageDialog(null, authorQuote + " --" + authorName);
+		} else {
+			System.out.println("\n" + authorQuote + " --" + authorName + "\n\n\n");
+		}
 	}
 
 	private static void selectAuthor() {
 		String authorChoice;
 		String authorQuote = null;
 
-		System.out.println("\n\n\nPlease type the name of the Banned Books Author you want to see a quote from, exactly as it is listed below!\n[Aldous Huxley, Ayn Rand, Charles Darwin, Dan Brown,\nGeorge Orwell, J.K. Rowling, Mary Shelly, Ray Bradbury,\nSalman Rushdie, Shirley Jackson, Suzane Collins, Thomas Paine]");
-		System.out.print("Please type the authors name: ");
-
-		authorChoice = $userInput.nextLine();
+		if (graphicsOption == 1) {
+			authorChoice = JOptionPane.showInputDialog("Please type the name of the Banned Books Author you want to see a quote from, exactly as it is listed below!\nAldous Huxley, Ayn Rand, Charles Darwin, Dan Brown,\nGeorge Orwell, J.K. Rowling, Mary Shelly, Ray Bradbury,\nSalman Rushdie, Shirley Jackson, Suzane Collins, Thomas Paine\nplease type the authors name");
+		} else {
+			System.out.println("\n\n\nPlease type the name of the Banned Books Author you want to see a quote from, exactly as it is listed below!\n[Aldous Huxley, Ayn Rand, Charles Darwin, Dan Brown,\nGeorge Orwell, J.K. Rowling, Mary Shelly, Ray Bradbury,\nSalman Rushdie, Shirley Jackson, Suzane Collins, Thomas Paine]");
+			System.out.print("Please type the authors name: ");
+			authorChoice = $userInput.nextLine();
+		}
 
 		if (authorChoice.equalsIgnoreCase("Aldous Huxley")) {
 			authorQuote = aldousHuxley;
@@ -131,6 +158,10 @@ public class BannedBooksAuthorsQuotes {
 			authorQuote = "Error! Please type a name from above!";
 		}
 
-		System.out.println("\n" + authorQuote + "\n\n\n");
+		if (graphicsOption == 1) {
+			JOptionPane.showMessageDialog(null, authorQuote);
+		} else {
+			System.out.println("\n" + authorQuote + "\n\n\n");
+		}
 	}
 }
